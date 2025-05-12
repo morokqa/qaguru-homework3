@@ -4,19 +4,36 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+import static utils.RandomUtils.*;
+
+
 public class RegistrationPageObject extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
+
+    String firstName = randomFirstName();
+    String lastName = randomLastName();
+    String userEmail = randomUserEmail();
+    String userGender = randomGender();
+    String userPhoneNumber = randomPhoneNumber();
+//    String dayOfBirth = randomDay();
+//    String monthOfBirth = randomMonth();
+//    String yearOfBirth = randomYear();
+//    String userSubject = randomSubject();
+//    String userHobby = randomHobby();
+//    String userAddress = randomAddress();
+//    String userState = randomState();
+//    String userCity = randomCity();
 
     @Test
     @DisplayName("Проверка полностью заполненной формы")
     void filledFormTest() {
         registrationPage.openPage()
-                .setFirstName("Tom")
-                .setLastName("Holland")
-                .setEmail("tom@mail.ru")
-                .setGender("Male")
-                .setUserNumber("8800777900")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGender(userGender)
+                .setUserNumber(userPhoneNumber)
                 .setDateOfBirth("22", "May", "1989")
                 .setSubjects("bi")
                 .setHobby("Music")
@@ -26,10 +43,10 @@ public class RegistrationPageObject extends TestBase {
                 .setCity("Merrut")
                 .submitClick()
 
-                .checkResults("Student Name", "Tom Holland")
-                .checkResults("Student Email", "tom@mail.ru")
-                .checkResults("Gender", "Male")
-                .checkResults("Mobile", "8800777900")
+                .checkResults("Student Name", firstName + " " + lastName)
+                .checkResults("Student Email", userEmail)
+                .checkResults("Gender", userGender)
+                .checkResults("Mobile", userPhoneNumber)
                 .checkResults("Date of Birth", "22 May,1989")
                 .checkResults("Subjects", "Biology")
                 .checkResults("Hobbies", "Music")
@@ -43,10 +60,10 @@ public class RegistrationPageObject extends TestBase {
     @DisplayName("Форма заполнена минимальным количеством данных")
     void minValuesFormTest() {
         registrationPage.openPage()
-                .setFirstName("Tom")
-                .setLastName("Holland")
-                .setGender("Male")
-                .setUserNumber("8800777900")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(userGender)
+                .setUserNumber(userPhoneNumber)
                 .submitScrollAndClick()
 
                 .checkResults("Student Name", "Tom Holland")
@@ -59,9 +76,9 @@ public class RegistrationPageObject extends TestBase {
 
     void notFilledMobileNumber() {
         registrationPage.openPage()
-                .setFirstName("Tom")
-                .setLastName("Holland")
-                .setGender("Male")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(userGender)
                 .submitScrollAndClick()
 
                 .checkTableNotOpen();

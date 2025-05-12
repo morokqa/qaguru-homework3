@@ -7,9 +7,9 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ResultsTableComponent {
-    public SelenideElement resultsTable = $(".table-responsive");
+    public final SelenideElement resultsTable = $(".table-responsive");
     public void checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key))
+        resultsTable.$(byText(key))
                 .parent()
                 .shouldHave(text(value));
 

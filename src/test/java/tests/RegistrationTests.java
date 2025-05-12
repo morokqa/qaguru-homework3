@@ -16,6 +16,11 @@ public class RegistrationTests extends TestBase {
 
     void filledFormTest() {
         open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form")); // проверка, что открыта нужная стр.
+        executeJavaScript("$('#fixedban').remove()"); // закрытие баннера
+        executeJavaScript("$('footer').remove()"); // удаление футера
+
+
         $("#firstName").setValue("Tom");
         $("#lastName").setValue("Holland");
         $("#userEmail").setValue("tom@mail.ru");
@@ -25,6 +30,8 @@ public class RegistrationTests extends TestBase {
         $(".react-datepicker__month-select").selectOption("May");
         $(".react-datepicker__year-select").selectOption("1989");
         $$("div.react-datepicker__day").findBy(text("22")).click();
+        // когда в календаре есть повторяющийся элемент, напр. 30 число: $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click()
+
         $("#subjectsInput").setValue("bi").sendKeys(Keys.RETURN);
         $("#hobbiesWrapper").$(byText("Music")).click();
         $("#uploadPicture").uploadFromClasspath("image.jpg");
