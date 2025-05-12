@@ -100,21 +100,21 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setCurrentAddress(String value) {
-        currentAddressInput.setValue("Mira, 1");
+        currentAddressInput.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setState(String value) {
         stateList.click();
-        stateInput.$(byText("Uttar Pradesh")).click();
+        stateInput.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage setCity(String value) {
         cityList.click();
-        cityInput.$(byText("Merrut")).click();
+        cityInput.$(byText(value)).click();
 
         return this;
     }

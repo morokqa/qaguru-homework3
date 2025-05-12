@@ -16,14 +16,14 @@ public class RegistrationPageObject extends TestBase {
     String userEmail = randomUserEmail();
     String userGender = randomGender();
     String userPhoneNumber = randomPhoneNumber();
-//    String dayOfBirth = randomDay();
-//    String monthOfBirth = randomMonth();
-//    String yearOfBirth = randomYear();
-//    String userSubject = randomSubject();
-//    String userHobby = randomHobby();
-//    String userAddress = randomAddress();
-//    String userState = randomState();
-//    String userCity = randomCity();
+    String dayOfBirth = randomDay();
+    String monthOfBirth = randomMonth();
+    String yearOfBirth = randomYear();
+    String userSubject = randomSubject();
+    String userHobby = randomHobby();
+    String userAddress = randomAddress();
+    String userState = randomState();
+    String userCity = randomCity(userState);
 
     @Test
     @DisplayName("Проверка полностью заполненной формы")
@@ -34,25 +34,25 @@ public class RegistrationPageObject extends TestBase {
                 .setEmail(userEmail)
                 .setGender(userGender)
                 .setUserNumber(userPhoneNumber)
-                .setDateOfBirth("22", "May", "1989")
-                .setSubjects("bi")
-                .setHobby("Music")
+                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setSubjects(userSubject)
+                .setHobby(userHobby)
                 .setPicture("image.jpg")
-                .setCurrentAddress("Mira, 1")
-                .setState("Uttar Pradesh")
-                .setCity("Merrut")
+                .setCurrentAddress(userAddress)
+                .setState(userState)
+                .setCity(userCity)
                 .submitClick()
 
                 .checkResults("Student Name", firstName + " " + lastName)
                 .checkResults("Student Email", userEmail)
                 .checkResults("Gender", userGender)
                 .checkResults("Mobile", userPhoneNumber)
-                .checkResults("Date of Birth", "22 May,1989")
-                .checkResults("Subjects", "Biology")
-                .checkResults("Hobbies", "Music")
+                .checkResults("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                .checkResults("Subjects", userSubject)
+                .checkResults("Hobbies", userHobby)
                 .checkResults("Picture", "image.jpg")
-                .checkResults("Address", "Mira, 1")
-                .checkResults("State and City", "Uttar Pradesh Merrut");
+                .checkResults("Address", userAddress)
+                .checkResults("State and City", userState + " " + userCity);
 
     }
 
@@ -66,9 +66,9 @@ public class RegistrationPageObject extends TestBase {
                 .setUserNumber(userPhoneNumber)
                 .submitScrollAndClick()
 
-                .checkResults("Student Name", "Tom Holland")
-                .checkResults("Mobile", "8800777900")
-                .checkResults("Gender", "Male");
+                .checkResults("Student Name", firstName + " " + lastName)
+                .checkResults("Mobile", userPhoneNumber)
+                .checkResults("Gender", userGender);
     }
 
     @Test
