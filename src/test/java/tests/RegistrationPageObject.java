@@ -21,6 +21,7 @@ public class RegistrationPageObject extends TestBase {
     String yearOfBirth = randomYear();
     String userSubject = randomSubject();
     String userHobby = randomHobby();
+    String userPicture = "image.jpg";
     String userAddress = randomAddress();
     String userState = randomState();
     String userCity = randomCity(userState);
@@ -37,7 +38,7 @@ public class RegistrationPageObject extends TestBase {
                 .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
                 .setSubjects(userSubject)
                 .setHobby(userHobby)
-                .setPicture("image.jpg")
+                .setPicture(userPicture)
                 .setCurrentAddress(userAddress)
                 .setState(userState)
                 .setCity(userCity)
@@ -50,7 +51,7 @@ public class RegistrationPageObject extends TestBase {
                 .checkResults("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
                 .checkResults("Subjects", userSubject)
                 .checkResults("Hobbies", userHobby)
-                .checkResults("Picture", "image.jpg")
+                .checkResults("Picture", userPicture)
                 .checkResults("Address", userAddress)
                 .checkResults("State and City", userState + " " + userCity);
 
