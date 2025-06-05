@@ -67,6 +67,7 @@ public class RegistrationTests extends TestBase {
 
     @Test
     @DisplayName("Форма заполнена минимальным количеством данных")
+    @Tag ("DemoQA")
 
     void minValuesFormTest() {
         open("/automation-practice-form");
@@ -84,6 +85,7 @@ public class RegistrationTests extends TestBase {
 
     @Test
     @DisplayName("Не заполнено обязательное поле Mobile Number")
+    @Tag ("DemoQA")
 
     void notFilledMobileNumber() {
         open("/automation-practice-form");
