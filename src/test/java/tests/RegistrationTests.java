@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -13,6 +14,7 @@ public class RegistrationTests extends TestBase {
 
     @Test
     @DisplayName("Проверка полностью заполненной формы")
+    @Tag ("DemoQA")
 
     void filledFormTest() {
         open("/automation-practice-form");
