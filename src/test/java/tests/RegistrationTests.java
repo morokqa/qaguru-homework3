@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,6 @@ public class RegistrationTests extends TestBase {
         $(".react-datepicker__year-select").selectOption("1989");
         $$("div.react-datepicker__day").findBy(text("22")).click();
         // когда в календаре есть повторяющийся элемент, напр. 30 число: $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click()
-
         $("#subjectsInput").setValue("bi").sendKeys(Keys.RETURN);
         $("#hobbiesWrapper").$(byText("Music")).click();
         $("#uploadPicture").uploadFromClasspath("image.jpg");
