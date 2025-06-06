@@ -22,7 +22,6 @@ public class RegistrationTests extends TestBase {
         executeJavaScript("$('#fixedban').remove()"); // закрытие баннера
         executeJavaScript("$('footer').remove()"); // удаление футера
 
-
         $("#firstName").setValue("Tom");
         $("#lastName").setValue("Holland");
         $("#userEmail").setValue("tom@mail.ru");
