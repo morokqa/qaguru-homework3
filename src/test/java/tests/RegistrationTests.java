@@ -30,12 +30,11 @@ public class RegistrationTests {
     @Tag("demoqa")
     void filledFormTest() {
         step("Открываем страницу с формой", () -> {
-            open("https://github.com");
+            open("/automation-practice-form");
             $(".practice-form-wrapper").shouldHave(text("Student Registration Form")); // проверка, что открыта нужная стр.
             executeJavaScript("$('#fixedban').remove()"); // закрытие баннера
             executeJavaScript("$('footer').remove()"); // удаление футера
         });
-
         step("Заполняем форму", () -> {
             $("#firstName").setValue("Tom");
             $("#lastName").setValue("Holland");
@@ -53,11 +52,9 @@ public class RegistrationTests {
             $("#react-select-3-input").setValue("u").sendKeys(Keys.RETURN);
             $("#react-select-4-input").setValue("m").sendKeys(Keys.RETURN);
         });
-
         step("Нажимаем кнопку 'Отправить'", () -> {
             $("#submit").click();
         });
-
         step("Проверяем, что форма заполнена корректными данными", () -> {
             $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Tom Holland"));
             $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("tom@mail.ru"));
@@ -76,13 +73,12 @@ public class RegistrationTests {
         });
     }
         @Test
-        @DisplayName("Открываем главную страницу с формой")
+        @DisplayName("Заполнение формы только обязательных полей")
         @Tag("demoqa")
         void minValuesFormTest () {
             step("Открываем форму на главной странице", () -> {
                 open("/automation-practice-form");
             });
-
             step("Заполняем только обязательные поля", () -> {
                 $("#firstName").setValue("Tom");
                 $("#lastName").setValue("Holland");
@@ -91,7 +87,6 @@ public class RegistrationTests {
                 $("#genterWrapper").$(byText("Male")).click();
                 $("#submit").scrollTo().click();
             });
-
             step("Проверяем, что поля заполнены корректными данными", () -> {
                 $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Tom Holland"));
                 $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
@@ -106,14 +101,12 @@ public class RegistrationTests {
             step("Открываем главную страницу с формой", () -> {
                 open("/automation-practice-form");
             });
-
             step("Заполняем имя, фамилию и пол и кликаем Отправить", () -> {
             $("#firstName").setValue("Tom");
             $("#lastName").setValue("Holland");
             $("#genterWrapper").$(byText("Male")).click();
             $("#submit").scrollTo().click();
             });
-
             step("Проверяем, что форма не отправлена", () -> {
             $(".table-responsive").shouldNot(exist);
             });
