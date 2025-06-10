@@ -15,23 +15,6 @@ import static io.qameta.allure.Allure.step;
 
 
 public class RegistrationTests extends TestBase {
-//    @BeforeAll
-//    static void setupConfig() {
-//        Configuration.baseUrl = "https://demoqa.com";
-//        Configuration.pageLoadStrategy = "eager";
-//        Configuration.browserSize = "1920x1080";
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-//    }
-//
-//    @AfterEach
-//    void addAttachments() {
-//        Attach.screenshotAs("Last screenshot");
-//        Attach.pageSource();
-//        Attach.browserConsoleLogs();
-//        Attach.addVideo();
-//    }
-
     @Test
     @DisplayName("Проверка полностью заполненной формы")
     @Tag("demoqa")
@@ -79,43 +62,44 @@ public class RegistrationTests extends TestBase {
             $("#closeLargeModal").shouldBe(interactable).click();
         });
     }
-        @Test
-        @DisplayName("Заполнение формы только обязательных полей")
-        @Tag("demoqa")
-        void minValuesFormTest () {
-            step("Открываем форму на главной странице", () -> {
-                open("/automation-practice-form");
-            });
-            step("Заполняем только обязательные поля", () -> {
-                $("#firstName").setValue("Tom");
-                $("#lastName").setValue("Holland");
-                $("#userEmail").setValue("tom@mail.ru");
-                $("#userNumber").setValue("8800777900");
-                $("#genterWrapper").$(byText("Male")).click();
-                $("#submit").scrollTo().click();
-            });
-            step("Проверяем, что поля заполнены корректными данными", () -> {
-                $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Tom Holland"));
-                $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
-                $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("8800777900"));
-            });
-        }
-        @Test
-        @DisplayName("Не заполнено обязательное поле Mobile Number")
-        @Tag("demoqa")
 
-        void notFilledMobileNumber () {
-            step("Открываем главную страницу с формой", () -> {
-                open("/automation-practice-form");
-            });
-            step("Заполняем имя, фамилию и пол и кликаем Отправить", () -> {
+    @Test
+    @DisplayName("Заполнение формы только обязательных полей")
+    @Tag("demoqa")
+    void minValuesFormTest() {
+        step("Открываем форму на главной странице", () -> {
+            open("/automation-practice-form");
+        });
+        step("Заполняем только обязательные поля", () -> {
+            $("#firstName").setValue("Tom");
+            $("#lastName").setValue("Holland");
+            $("#userEmail").setValue("tom@mail.ru");
+            $("#userNumber").setValue("8800777900");
+            $("#genterWrapper").$(byText("Male")).click();
+            $("#submit").scrollTo().click();
+        });
+        step("Проверяем, что поля заполнены корректными данными", () -> {
+            $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Tom Holland"));
+            $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+            $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("8800777900"));
+        });
+    }
+
+    @Test
+    @DisplayName("Не заполнено обязательное поле Mobile Number")
+    @Tag("demoqa")
+    void notFilledMobileNumber() {
+        step("Открываем главную страницу с формой", () -> {
+            open("/automation-practice-form");
+        });
+        step("Заполняем имя, фамилию и пол и кликаем Отправить", () -> {
             $("#firstName").setValue("Tom");
             $("#lastName").setValue("Holland");
             $("#genterWrapper").$(byText("Male")).click();
             $("#submit").scrollTo().click();
-            });
-            step("Проверяем, что форма не отправлена", () -> {
+        });
+        step("Проверяем, что форма не отправлена", () -> {
             $(".table-responsive").shouldNot(exist);
-            });
-        }
+        });
     }
+}

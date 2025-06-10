@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class TestBase {
+
     @BeforeAll
     static void setupConfig() {
         Configuration.baseUrl = "https://demoqa.com";
